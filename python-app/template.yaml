@@ -47,6 +47,14 @@ spec:
         protectDefaultBranch: false
         repoVisibility: public
 
+    - id: create-argocd-app
+      name: Create ArgoCD Application
+      action: kubernetes:apply
+      input:
+        manifestPath: argocd/application.yaml
+        namespaced: true
+        clusterName: default  
+
     - id: register
       name: Register
       action: catalog:register
@@ -58,5 +66,6 @@ spec:
     links:
       - title: Repository
         url: ${{ steps['publish'].output.remoteUrl }}
+
 
 
