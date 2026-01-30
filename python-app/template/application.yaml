@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${{ values.name }}
+  namespace: argocd  # ArgoCD applications are typically in the argocd namespace
+spec:
+  project: default
+  source:
+    repoURL: ${{ values.repoUrl }}  # Your Git repo
+    targetRevision: HEAD
+    path: ${{ values.name }}/manifests  # Path to Kubernetes manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ${{ values.namespace | default('default') }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
