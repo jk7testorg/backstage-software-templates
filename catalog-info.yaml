@@ -5,7 +5,7 @@ metadata:
   description: Test Template
   annotations:
     github.com/project-slug: jk7testorg/backstage-software-templates
-    argocd/app-name: ${{ values.argocdAppName }}
+    argocd/app-name: ${{ values.name }}
 spec:
   type: service
   owner: development
