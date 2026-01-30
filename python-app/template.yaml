@@ -36,6 +36,7 @@ spec:
         values:
           app_name: ${{parameters.component_id}}
           app_env: ${{parameters.environment}}
+          argocdAppName: ${{ parameters.name }}-dev
 
     - id: publish
       name: Publish
@@ -57,4 +58,5 @@ spec:
     links:
       - title: Repository
         url: ${{ steps['publish'].output.remoteUrl }}
+
 
